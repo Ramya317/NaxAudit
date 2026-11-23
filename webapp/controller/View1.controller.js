@@ -37,11 +37,15 @@ sap.ui.define([
     ];
 
     // Roles: ASSIGNEDROLECOUNTSet filters. All = "*"
-    // -> /ASSIGNEDROLECOUNTSet?$filter=Ustyp eq '*' and CompanyCode eq '*'
+    // -> /ASSIGNEDROLECOUNTSet?$filter=UserStatus eq '*' and Ustyp eq '*' and CompanyCode eq '*'
     var ROLE_FILTERS = [
-        { id: "sodSelUserType", path: "Ustyp"       },
-        { id: "sodSelCompany",  path: "CompanyCode" }
+        { id: "sodSelUserStatus", path: "UserStatus"  },
+        { id: "sodSelUserType",   path: "Ustyp"       },
+        { id: "sodSelCompany",    path: "CompanyCode" }
     ];
+
+    // Properties that are filters / metadata (skipped when auto-detecting the count field)
+    var NON_COUNT_FIELDS = ["__metadata", "System", "UserStatus", "Ustyp", "UserType", "CompanyCode", "DateFrom", "DateTo"];
 
     // Roles count field name in backend response (first match is used).
     // Real name vere aithe ikkada add cheyyandi (console lo "Roles response" chudandi)
@@ -309,11 +313,28 @@ sap.ui.define([
                     console.log("Roles response", aRes);
 
                     var iRoles = 0;
+                    var bFound = false;
+
+                    // 1) known field names
                     for (var i = 0; i < ROLE_COUNT_FIELDS.length; i++) {
                         if (o[ROLE_COUNT_FIELDS[i]] !== undefined) {
                             iRoles = parseInt(o[ROLE_COUNT_FIELDS[i]], 10) || 0;
+                            bFound = true;
                             break;
                         }
+                    }
+
+                    // 2) fallback: first numeric property that is not a filter field
+                    if (!bFound) {
+                        Object.keys(o).some(function (sKey) {
+                            if (NON_COUNT_FIELDS.indexOf(sKey) >= 0) { return false; }
+                            if (/^\d+$/.test(String(o[sKey]).trim())) {
+                                iRoles = parseInt(o[sKey], 10) || 0;
+                                console.log("Roles count field auto-detected:", sKey);
+                                return true;
+                            }
+                            return false;
+                        });
                     }
 
                     this.getView().getModel("sodTilesModel").setProperty("/roles", iRoles);
