@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZAPI_NAX_AUDIT_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="USERSWITHDEBUGACCESS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Userid"/>
+                </Key>
+                <Property Name="Userid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User"/>
+                <Property Name="Username" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Full Name"/>
+                <Property Name="Usertype" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="User Type"/>
+                <Property Name="LockStatus" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="User Lock Status"/>
+                <Property Name="ValidFrom" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Valid From Date"/>
+                <Property Name="ValidTo" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Valid To Date"/>
+                <Property Name="AuthObject" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Object"/>
+                <Property Name="Objecttype" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Object"/>
+                <Property Name="Roles" Type="Edm.String" MaxLength="100" sap:unicode="false" sap:label="ROLES"/>
+                <Property Name="Act01" Type="Edm.Boolean" sap:unicode="false" sap:label="Checkbox"/>
+                <Property Name="Act02" Type="Edm.Boolean" sap:unicode="false" sap:label="Checkbox"/>
+                <Property Name="Act03" Type="Edm.Boolean" sap:unicode="false" sap:label="Checkbox"/>
+            </EntityType>
+            <EntityType Name="PrivilegedUserRiskCount" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Risk"/>
+                </Key>
+                <Property Name="Risk" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Risk" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Count" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PrivilegedUserRiskStatusCount" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Risk"/>
+                </Key>
+                <Property Name="Risk" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Risk" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InactiveCount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="InactiveCount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockedCount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="LockedCount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExpiredCount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="ExpiredCount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PrivilegedUserRiskStatusDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserId"/>
+                </Key>
+                <Property Name="UserId" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="UserId" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="UserName" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastLogin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="LastLogin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InactiveDays" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="InactiveDays" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FUEType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="FUEType" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Risk" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Risk" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RiskDescription" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="RiskDescription" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="UserData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SystemName"/>
+                </Key>
+                <Property Name="SystemName" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="SystemName" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TotalUsers" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="TotalUsers" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActiveUsers" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="ActiveUsers" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DormantUsers" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="DormantUsers" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActiveUsersPercentage" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ActiveUsersPercentage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DormantUsersPercentage" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ActiveUsersPercentage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="CompanyCode" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UserType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="UserType" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="RoleType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="RoleType" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="SodRuleset" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SodRuleset" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="UserStatus" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="UserStatus" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateFrom" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DateFrom" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="DateTo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="DateTo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="DeletedUser" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Username"/>
+                </Key>
+                <Property Name="System" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="SAP System Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Username" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Branching name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FullName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Complete name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidFrom" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="User valid from" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidTo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="User valid to" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="User Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserStatus" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="User Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Creator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Creation Date of the User Master Record" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedTime" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Created Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedDate" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Password Change Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedTime" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Time last change was made" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LockReason" Type="Edm.String" Nullable="false" MaxLength="150" sap:unicode="false" sap:label="Lock Reason" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastLogonDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Last Logon Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastLogonTime" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Last Logon Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Emailid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-Mail Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ASSIGNEDROLECOUNT" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SystemName"/>
+                </Key>
+                <Property Name="SystemName" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="System Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ustyp" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="User Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoleType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Role Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SodRuleset" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SOD Rule Set" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserStatus" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="User Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateFrom" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Data Element for Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateTo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Data Element for Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Count" Type="Edm.Int64" Nullable="false" sap:unicode="false" sap:label="Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="NewUsersCount" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="System"/>
+                </Key>
+                <Property Name="System" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comapnycode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usertype" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoleType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SodRuleSet" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateFrom" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateTo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usercount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INT4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="RoleChangesCount" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="System"/>
+                </Key>
+                <Property Name="System" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Usertype" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoleType" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SodRuleSet" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateFrom" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateTo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InclAssign" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rolecount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INT4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="HighRiskAccessCount" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="System"/>
+                    <PropertyRef Name="CompanyCode"/>
+                    <PropertyRef Name="UserType"/>
+                    <PropertyRef Name="UserStatus"/>
+                </Key>
+                <Property Name="System" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="System Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="User Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserStatus" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="User Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Count" Type="Edm.Int64" Nullable="false" sap:unicode="false" sap:label="Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="License_FUE" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="System"/>
+                    <PropertyRef Name="CompCode"/>
+                    <PropertyRef Name="LicType"/>
+                    <PropertyRef Name="UserType"/>
+                    <PropertyRef Name="Name"/>
+                </Key>
+                <Property Name="System" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="SAP System Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LicType" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Licence Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="User Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Date" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Percentage" Type="Edm.Int32" sap:unicode="false" sap:label="Percentage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZAPI_NAX_AUDIT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="USERSWITHDEBUGACCESSSet" EntityType="ZAPI_NAX_AUDIT_SRV.USERSWITHDEBUGACCESS" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PrivilegedUserRiskCountSet" EntityType="ZAPI_NAX_AUDIT_SRV.PrivilegedUserRiskCount" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PrivilegedUserRiskStatusCountSet" EntityType="ZAPI_NAX_AUDIT_SRV.PrivilegedUserRiskStatusCount" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PrivilegedUserRiskStatusDetailsSet" EntityType="ZAPI_NAX_AUDIT_SRV.PrivilegedUserRiskStatusDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="UserDataSet" EntityType="ZAPI_NAX_AUDIT_SRV.UserData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="DeletedUserSet" EntityType="ZAPI_NAX_AUDIT_SRV.DeletedUser" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ASSIGNEDROLECOUNTSet" EntityType="ZAPI_NAX_AUDIT_SRV.ASSIGNEDROLECOUNT" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="NewUsersCountSet" EntityType="ZAPI_NAX_AUDIT_SRV.NewUsersCount" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="RoleChangesCountSet" EntityType="ZAPI_NAX_AUDIT_SRV.RoleChangesCount" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HighRiskAccessCountSet" EntityType="ZAPI_NAX_AUDIT_SRV.HighRiskAccessCount" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="License_FUESet" EntityType="ZAPI_NAX_AUDIT_SRV.License_FUE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://shd:8011/sap/opu/odata/sap/ZAPI_NAX_AUDIT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://shd:8011/sap/opu/odata/sap/ZAPI_NAX_AUDIT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
