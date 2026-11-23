@@ -64,6 +64,10 @@ sap.ui.define([
     // Real name vere aithe ikkada add cheyyandi (console lo "HighRisk response" chudandi)
     var HIGHRISK_COUNT_FIELDS = ["HighRiskCount", "HighRiskAccess", "HighRiskUsers", "HighRisk", "TotalCount", "Count"];
 
+    // Terminated (Not Disabled) count field in UserDataSet response (first match is used).
+    // Real name vere aithe ikkada add cheyyandi (console lo "UserDataSet response" chudandi)
+    var TERMINATED_FIELDS = ["DeletedUsers", "TerminatedUsers", "TerminatedNotDisabled", "TerminatedNotDisabledUsers", "TermUsers", "TerminatedCount"];
+
     function row(no, domain, app, pass, fail, nt, un, comp, target, status) {
         return {
             no: no, domain: domain, applicable: app, passed: pass, failed: fail,
@@ -261,20 +265,35 @@ sap.ui.define([
                     var aRes = (oData && oData.results) || [];
                     var o    = aRes.length ? aRes[0] : {};
 
+                    console.log("UserDataSet response", aRes);
+
                     var iTotal = parseInt(o.TotalUsers, 10)   || 0;
                     var iAct   = parseInt(o.ActiveUsers, 10)  || 0;
                     var iDor   = parseInt(o.DormantUsers, 10) || 0;
 
-                    var fnPct = function (n) {
+                    // Terminated: known names first, else any property containing "Termin"
+                    var iTer = 0;
+                    var sTerKey = TERMINATED_FIELDS.filter(function (k) { return o[k] !== undefined; })[0];
+                    if (!sTerKey) {
+                        sTerKey = Object.keys(o).filter(function (k) { return /termin/i.test(k); })[0];
+                    }
+                    if (sTerKey) {
+                        iTer = parseInt(o[sTerKey], 10) || 0;
+                    }
+
+                    // % : backend value (ActiveUsersPercentage = "65") rounded, else calculated
+                    var fnPct = function (n, vBackend) {
+                        var f = parseFloat(vBackend);
+                        if (!isNaN(f)) { return Math.round(f) + "%"; }
                         return iTotal > 0 ? Math.round(n * 100 / iTotal) + "%" : "";
                     };
 
-                    // merge = true, so the "roles" value is not overwritten
+                    // merge = true, so "roles" and "highRiskAccess" values are not overwritten
                     this.getView().getModel("sodTilesModel").setData({
                         totalUsers:       iTotal,
-                        activeUsers:      iAct, activePct:  fnPct(iAct),
-                        dormantUsers:     iDor, dormantPct: fnPct(iDor),
-                        terminatedUsers:  0,    terminatedPct: "",
+                        activeUsers:      iAct,  activePct:     fnPct(iAct, o.ActiveUsersPercentage),
+                        dormantUsers:     iDor,  dormantPct:    fnPct(iDor, o.DormantUsersPercentage),
+                        terminatedUsers:  iTer,  terminatedPct: fnPct(iTer, o.DeletedUsersPercentage),
                         sodConflicts:     0,
                         accessReviewsDue: 0
                     }, true);

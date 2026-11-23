@@ -648,9 +648,10 @@
 </GenericTile>
 
                         <GenericTile id="sodTileTerminated" header="Terminated (Not Disabled)" class="kpiTile">
-                            <TileContent id="sodTcTerminated" footer="{sodTilesModel>/terminatedPct}">
+                            <TileContent id="sodTcTerminated" >
                                 <NumericContent id="sodNcTerminated"
                                     value="{sodTilesModel>/terminatedUsers}"
+                                    scale ="{sodTilesModel>/terminatedPct}"
                                     icon="sap-icon://employee-rejections" valueColor="Error" withMargin="false"/>
                             </TileContent>
                         </GenericTile>
