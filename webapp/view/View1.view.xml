@@ -397,9 +397,16 @@
                         <!-- AI RECOMMENDATIONS -->
                         <VBox id="aiContainer" renderType="Bare" class="cmCard cmCardAi cmRight">
 
-                            <Title id="aiTitle"
-                                   text="AI Recommendations (Next Best Actions)"
-                                   level="H4" class="cmCardTitle"/>
+                            <HBox id="aiTitleBox" alignItems="Center" class="cmCardTitle">
+                                <core:Icon id="aiTitleIcon"
+                                           src="sap-icon://lightbulb"
+                                           color="Critical"
+                                           size="1.25rem"
+                                           class="sapUiTinyMarginEnd"/>
+                                <Title id="aiTitle"
+                                       text="AI Recommendations (Next Best Actions)"
+                                       level="H4"/>
+                            </HBox>
 
                             <Table id="aiTable" width="100%"
                                    items="{aiModel>/items}"
@@ -518,9 +525,428 @@
                         </fb:filterGroupItems>
                     </fb:FilterBar>
 
+                    <!-- RISK KPI TILES (hard coded values) -->
+                    <FlexBox id="riskKpiTiles" width="100%" direction="Row" wrap="Wrap"
+                             justifyContent="Start" alignItems="Stretch" class="kpiTiles">
+
+                        <GenericTile id="riskTileTotal" header="Total Open Risks" class="kpiTile">
+                            <TileContent id="riskTcTotal">
+                                <NumericContent id="riskNcTotal" value="54"
+                                    icon="sap-icon://layer" valueColor="Neutral" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <GenericTile id="riskTileCritical" header="Critical Risks" class="kpiTile">
+                            <TileContent id="riskTcCritical">
+                                <NumericContent id="riskNcCritical" value="6"
+                                    icon="sap-icon://alert" valueColor="Error" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <GenericTile id="riskTileHigh" header="High Risks" class="kpiTile">
+                            <TileContent id="riskTcHigh">
+                                <NumericContent id="riskNcHigh" value="14"
+                                    icon="sap-icon://alert" valueColor="Critical" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <GenericTile id="riskTileMedium" header="Medium Risks" class="kpiTile">
+                            <TileContent id="riskTcMedium">
+                                <NumericContent id="riskNcMedium" value="21"
+                                    icon="sap-icon://alert" valueColor="Critical" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <GenericTile id="riskTileLow" header="Low Risks" class="kpiTile">
+                            <TileContent id="riskTcLow">
+                                <NumericContent id="riskNcLow" value="13"
+                                    icon="sap-icon://alert" valueColor="Good" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <GenericTile id="riskTileAcceptDue" header="Risk Acceptances Due" class="kpiTile">
+                            <TileContent id="riskTcAcceptDue">
+                                <NumericContent id="riskNcAcceptDue" value="3"
+                                    icon="sap-icon://calendar" valueColor="Critical" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <GenericTile id="riskTileOverdue" header="Overdue Treatments" class="kpiTile">
+                            <TileContent id="riskTcOverdue">
+                                <NumericContent id="riskNcOverdue" value="8"
+                                    icon="sap-icon://fob-watch" valueColor="Error" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
+
+                    </FlexBox>
+
+                    <!-- RISK ROW 2 : RISK BY SAP MODULE | RISK TREND (LAST 6 MONTHS) -->
+                    <FlexBox id="riskChartsRow" renderType="Bare" class="cmRow cmRowCharts">
+
+                        <!-- RISK BY SAP MODULE (donut chart) -->
+                        <VBox id="riskModuleContainer" renderType="Bare" class="cmCard cmLeft">
+
+                            <Title id="riskModuleTitle" text="Risk by SAP Module"
+                                   level="H4" class="cmCardTitle"/>
+
+                            <VBox id="riskModuleChartBox" renderType="Bare" class="cmChartBox">
+                                <viz:VizFrame id="riskModuleChart" vizType="donut"
+                                              width="100%" height="280px"
+                                              uiConfig="{applicationSet:'fiori'}">
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset id="riskModuleDataset"
+                                            data="{riskModuleModel>/items}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition id="riskModuleDim"
+                                                    name="Module" value="{riskModuleModel>module}"/>
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition id="riskModuleMeas"
+                                                    name="Risks" value="{riskModuleModel>count}"/>
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem id="riskModuleFeedSize" uid="size"
+                                            type="Measure" values="Risks"/>
+                                        <viz.feeds:FeedItem id="riskModuleFeedColor" uid="color"
+                                            type="Dimension" values="Module"/>
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </VBox>
+                        </VBox>
+
+                        <!-- RISK TREND - LAST 6 MONTHS (line chart) -->
+                        <VBox id="riskTrendContainer" renderType="Bare" class="cmCard cmRight">
+
+                            <Title id="riskTrendTitle" text="Risk Trend (Last 6 Months)"
+                                   level="H4" class="cmCardTitle"/>
+
+                            <VBox id="riskTrendChartBox" renderType="Bare" class="cmChartBox">
+                                <viz:VizFrame id="riskTrendChart" vizType="line"
+                                              width="100%" height="280px"
+                                              uiConfig="{applicationSet:'fiori'}">
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset id="riskTrendDataset"
+                                            data="{riskTrendModel>/items}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition id="riskTrendDim"
+                                                    name="Month" value="{riskTrendModel>month}"/>
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition id="riskTrendMeasOpen"
+                                                    name="Total Open Risks" value="{riskTrendModel>open}"/>
+                                                <viz.data:MeasureDefinition id="riskTrendMeasOutside"
+                                                    name="Outside Appetite" value="{riskTrendModel>outside}"/>
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem id="riskTrendFeedValue" uid="valueAxis"
+                                            type="Measure" values="Total Open Risks,Outside Appetite"/>
+                                        <viz.feeds:FeedItem id="riskTrendFeedCat" uid="categoryAxis"
+                                            type="Dimension" values="Month"/>
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </VBox>
+                        </VBox>
+
+                    </FlexBox>
+
+                    <!-- RISK ROW 3 : RISK BY DOMAIN (TOP 5) | RISK TREATMENT STATUS -->
+                    <FlexBox id="riskChartsRow2" renderType="Bare" class="cmRow cmRowCharts">
+
+                        <!-- RISK BY DOMAIN - TOP 5 (horizontal bar chart) -->
+                        <VBox id="riskDomainContainer" renderType="Bare" class="cmCard cmLeft">
+
+                            <Title id="riskDomainTitle" text="Risk by Domain (Top 5)"
+                                   level="H4" class="cmCardTitle"/>
+
+                            <VBox id="riskDomainChartBox" renderType="Bare" class="cmChartBox">
+                                <viz:VizFrame id="riskDomainChart" vizType="bar"
+                                              width="100%" height="280px"
+                                              uiConfig="{applicationSet:'fiori'}">
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset id="riskDomainDataset"
+                                            data="{riskDomainModel>/items}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition id="riskDomainDim"
+                                                    name="Domain" value="{riskDomainModel>domain}"/>
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition id="riskDomainMeas"
+                                                    name="Risks" value="{riskDomainModel>count}"/>
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem id="riskDomainFeedValue" uid="valueAxis"
+                                            type="Measure" values="Risks"/>
+                                        <viz.feeds:FeedItem id="riskDomainFeedCat" uid="categoryAxis"
+                                            type="Dimension" values="Domain"/>
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </VBox>
+                        </VBox>
+
+                        <!-- RISK TREATMENT STATUS (donut chart) -->
+                        <VBox id="riskTreatContainer" renderType="Bare" class="cmCard cmRight">
+
+                            <Title id="riskTreatTitle" text="Risk Treatment Status"
+                                   level="H4" class="cmCardTitle"/>
+
+                            <VBox id="riskTreatChartBox" renderType="Bare" class="cmChartBox">
+                                <viz:VizFrame id="riskTreatChart" vizType="donut"
+                                              width="100%" height="280px"
+                                              uiConfig="{applicationSet:'fiori'}">
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset id="riskTreatDataset"
+                                            data="{riskTreatModel>/items}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition id="riskTreatDim"
+                                                    name="Status" value="{riskTreatModel>status}"/>
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition id="riskTreatMeas"
+                                                    name="Risks" value="{riskTreatModel>count}"/>
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem id="riskTreatFeedSize" uid="size"
+                                            type="Measure" values="Risks"/>
+                                        <viz.feeds:FeedItem id="riskTreatFeedColor" uid="color"
+                                            type="Dimension" values="Status"/>
+                                    </viz:feeds>
+                                </viz:VizFrame>
+                            </VBox>
+                        </VBox>
+
+                    </FlexBox>
+
+                    <!-- RISK ROW 4 : TOP 5 PRIORITY RISKS | AI RISK INTELLIGENCE -->
+                    <FlexBox id="riskRow4" renderType="Bare" class="cmRow">
+
+                        <!-- TOP 5 PRIORITY RISKS -->
+                        <VBox id="riskTopContainer" renderType="Bare" class="cmCard cmLeft">
+
+                            <Title id="riskTopTitle" text="Top 5 Priority Risks"
+                                   level="H4" class="cmCardTitle"/>
+
+                            <Table id="riskTopTable" width="100%"
+                                   items="{riskTopModel>/items}"
+                                   class="sapUiSizeCompact">
+                                <columns>
+                                    <Column id="rtColNo"     width="5%"><Text id="rtHNo"     text="#"/></Column>
+                                    <Column id="rtColRisk"   width="31%"><Text id="rtHRisk"   text="Risk"/></Column>
+                                    <Column id="rtColDomain" width="12%"><Text id="rtHDomain" text="Domain"/></Column>
+                                    <Column id="rtColRes"    width="13%"><Text id="rtHRes"    text="Residual"/></Column>
+                                    <Column id="rtColOwner"  width="20%"><Text id="rtHOwner"  text="Owner"/></Column>
+                                    <Column id="rtColDue"    width="19%"><Text id="rtHDue"    text="Due Date"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="rtItem">
+                                        <cells>
+                                            <Text id="rtCNo"     text="{riskTopModel>no}"/>
+                                            <Text id="rtCRisk"   text="{riskTopModel>risk}"/>
+                                            <Text id="rtCDomain" text="{riskTopModel>domain}"/>
+                                            <ObjectStatus id="rtCRes" text="{riskTopModel>residual}"
+                                                          state="{riskTopModel>state}"/>
+                                            <Text id="rtCOwner"  text="{riskTopModel>owner}"/>
+                                            <Text id="rtCDue"    text="{riskTopModel>due}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </VBox>
+
+                        <!-- AI RISK INTELLIGENCE -->
+                        <VBox id="riskAiContainer" renderType="Bare" class="cmCard cmRight">
+
+                            <HBox id="riskAiTitleBox" alignItems="Center" class="cmCardTitle">
+                                <core:Icon id="riskAiTitleIcon"
+                                           src="sap-icon://lightbulb"
+                                           color="Critical"
+                                           size="1.25rem"
+                                           class="sapUiTinyMarginEnd"/>
+                                <Title id="riskAiTitle"
+                                       text="AI Risk Intelligence"
+                                       level="H4"/>
+                            </HBox>
+                           
+<List id="riskAiList" showSeparators="None"
+      class="sapUiSizeCompact">
+
+    <CustomListItem id="riskAiItem1">
+        <HBox id="_IDGenHBox1" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+            <core:Icon id="_IDGenIcon" src="sap-icon://circle-task-2"
+                       size="0.75rem" color="Neutral"/>
+            <Text id="_IDGenText" text="6 risks (11%) are outside the defined risk appetite."
+                  wrapping="true" class="sapUiTinyMarginBegin"/>
+        </HBox>
+    </CustomListItem>
+
+    <CustomListItem id="riskAiItem2">
+        <HBox id="_IDGenHBox2" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+            <core:Icon id="_IDGenIcon1" src="sap-icon://circle-task-2"
+                       size="0.75rem" color="Neutral"/>
+            <Text id="_IDGenText1" text="14 high risks should be treated within 30 days."
+                  wrapping="true" class="sapUiTinyMarginBegin"/>
+        </HBox>
+    </CustomListItem>
+
+    <CustomListItem id="riskAiItem3">
+        <HBox id="_IDGenHBox3" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+            <core:Icon id="_IDGenIcon2" src="sap-icon://circle-task-2"
+                       size="0.75rem" color="Neutral"/>
+            <Text id="_IDGenText2" text="3 risk acceptances are due for renewal (≤ 30 days)."
+                  wrapping="true" class="sapUiTinyMarginBegin"/>
+        </HBox>
+    </CustomListItem>
+
+    <CustomListItem id="riskAiItem4">
+        <HBox id="_IDGenHBox4" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+            <core:Icon id="_IDGenIcon3" src="sap-icon://circle-task-2"
+                       size="0.75rem" color="Neutral"/>
+            <Text id="_IDGenText3" text="8 treatments are overdue; escalate to risk owners."
+                  wrapping="true" class="sapUiTinyMarginBegin"/>
+        </HBox>
+    </CustomListItem>
+
+    <CustomListItem id="riskAiItem5">
+        <HBox id="_IDGenHBox5" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+            <core:Icon id="_IDGenIcon4" src="sap-icon://circle-task-2"
+                       size="0.75rem" color="Neutral"/>
+            <Text id="_IDGenText4" text="Focus on privileged access, change control and SoD for maximum risk reduction."
+                  wrapping="true" class="sapUiTinyMarginBegin"/>
+        </HBox>
+    </CustomListItem>
+
+</List>
+
+                       
+                        </VBox>
+
+                    </FlexBox>
+
+                    <!-- RISK ROW 5 : RISK REGISTER (full width) -->
+                    <FlexBox id="riskRow5" renderType="Bare" class="cmRow">
+
+                        <VBox id="riskRegContainer" renderType="Bare" width="100%" class="cmCard">
+
+                            <Title id="riskRegTitle" text="Risk Register (54 Risks)"
+                                   level="H4" class="cmCardTitle"/>
+
+                            <Table id="riskRegTable" width="100%"
+                                   mode="MultiSelect"
+                                   items="{riskRegModel>/items}"
+                                   class="sapUiSizeCompact">
+                                <columns>
+                                    <Column id="rgColId"        width="7%"><Text id="rgHId"        text="Risk ID"/></Column>
+                                    <Column id="rgColTitle"     width="17%"><Text id="rgHTitle"     text="Risk Title"/></Column>
+                                    <Column id="rgColModule"    width="6%"><Text id="rgHModule"    text="Module"/></Column>
+                                    <Column id="rgColDomain"    width="7%"><Text id="rgHDomain"    text="Domain"/></Column>
+                                    <Column id="rgColInherent"  width="7%" hAlign="Center"><Text id="rgHInherent" text="Inherent"/></Column>
+                                    <Column id="rgColResidual"  width="7%" hAlign="Center"><Text id="rgHResidual" text="Residual"/></Column>
+                                    <Column id="rgColLevel"     width="8%"><Text id="rgHLevel"     text="Risk Level"/></Column>
+                                    <Column id="rgColTreat"     width="17%"><Text id="rgHTreat"     text="Treatment"/></Column>
+                                    <Column id="rgColStatus"    width="8%"><Text id="rgHStatus"    text="Status"/></Column>
+                                    <Column id="rgColOwner"     width="8%"><Text id="rgHOwner"     text="Owner"/></Column>
+                                    <Column id="rgColDue"       width="8%"><Text id="rgHDue"       text="Due Date"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="rgItem">
+                                        <cells>
+                                            <Link id="rgCId"       text="{riskRegModel>id}"/>
+                                            <Text id="rgCTitle"    text="{riskRegModel>title}"/>
+                                            <Text id="rgCModule"   text="{riskRegModel>module}"/>
+                                            <Text id="rgCDomain"   text="{riskRegModel>domain}"/>
+                                            <Text id="rgCInherent" text="{riskRegModel>inherent}"/>
+                                            <Text id="rgCResidual" text="{riskRegModel>residual}"/>
+                                            <ObjectStatus id="rgCLevel" text="{riskRegModel>level}"
+                                                          state="{riskRegModel>levelState}"/>
+                                            <Text id="rgCTreat"    text="{riskRegModel>treatment}"/>
+                                            <ObjectStatus id="rgCStatus" text="{riskRegModel>status}"
+                                                          state="{riskRegModel>statusState}"/>
+                                            <Text id="rgCOwner"    text="{riskRegModel>owner}"/>
+                                            <Text id="rgCDue"      text="{riskRegModel>due}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+
+                            <HBox id="riskRegFooter" justifyContent="Start" class="cmCardFooter">
+                                <Link id="viewAllRisks" text="View All Risks (54) →"/>
+                            </HBox>
+                        </VBox>
+
+                    </FlexBox>
+
+                    <!-- RISK ROW 6 : RISK LIFECYCLE (full width) -->
+                    <FlexBox id="riskRow6" renderType="Bare" class="cmRow cmRowLast">
+
+                        <VBox id="riskLifecycleContainer" renderType="Bare" width="100%" class="cmCard">
+
+                            <Title id="riskLifecycleTitle" text="Risk Lifecycle"
+                                   level="H4" class="cmCardTitle"/>
+
+                            <HBox id="riskLifecycleSteps" justifyContent="SpaceAround"
+                                  alignItems="Center" wrap="Wrap"
+                                  class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+
+                                <VBox id="rlStepIdentify" alignItems="Center">
+                                    <core:Icon id="rlIconIdentify" src="sap-icon://search" size="1.75rem"/>
+                                    <Text id="rlTextIdentify" text="Identify" class="sapUiTinyMarginTop"/>
+                                </VBox>
+                                <core:Icon id="rlArrow1" src="sap-icon://navigation-right-arrow"
+                                           size="1rem" color="NonInteractive"/>
+
+                                <VBox id="rlStepAssess" alignItems="Center">
+                                    <core:Icon id="rlIconAssess" src="sap-icon://survey" size="1.75rem"/>
+                                    <Text id="rlTextAssess" text="Assess" class="sapUiTinyMarginTop"/>
+                                </VBox>
+                                <core:Icon id="rlArrow2" src="sap-icon://navigation-right-arrow"
+                                           size="1rem" color="NonInteractive"/>
+
+                                <VBox id="rlStepTreat" alignItems="Center">
+                                    <core:Icon id="rlIconTreat" src="sap-icon://goal" size="1.75rem"/>
+                                    <Text id="rlTextTreat" text="Treat" class="sapUiTinyMarginTop"/>
+                                </VBox>
+                                <core:Icon id="rlArrow3" src="sap-icon://navigation-right-arrow"
+                                           size="1rem" color="NonInteractive"/>
+
+                                <VBox id="rlStepAccept" alignItems="Center">
+                                    <core:Icon id="rlIconAccept" src="sap-icon://shield" size="1.75rem"/>
+                                    <Text id="rlTextAccept" text="Accept" class="sapUiTinyMarginTop"/>
+                                </VBox>
+                                <core:Icon id="rlArrow4" src="sap-icon://navigation-right-arrow"
+                                           size="1rem" color="NonInteractive"/>
+
+                                <VBox id="rlStepRetest" alignItems="Center">
+                                    <core:Icon id="rlIconRetest" src="sap-icon://synchronize" size="1.75rem"/>
+                                    <Text id="rlTextRetest" text="Retest" class="sapUiTinyMarginTop"/>
+                                </VBox>
+                                <core:Icon id="rlArrow5" src="sap-icon://navigation-right-arrow"
+                                           size="1rem" color="NonInteractive"/>
+
+                                <VBox id="rlStepClose" alignItems="Center">
+                                    <core:Icon id="rlIconClose" src="sap-icon://complete"
+                                               size="1.75rem" color="Positive"/>
+                                    <Text id="rlTextClose" text="Close" class="sapUiTinyMarginTop"/>
+                                </VBox>
+
+                            </HBox>
+
+                            <MessageStrip id="riskGovernanceStrip"
+                                          text="Governance: Risk Owner → GRC Approval → Independent Retest"
+                                          type="Information" showIcon="false"/>
+                        </VBox>
+
+                    </FlexBox>
+
                 </VBox>
 
-                <!-- SOD : SAP SECURITY & SoD (heading -> filters -> tiles) -->
+                <!-- SOD : SAP SECURITY & SoD (heading -> filters -> tiles -> high-risk table + provisioning) -->
                 <VBox id="sodContent" visible="false" width="auto"
                       class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
 
@@ -545,7 +971,7 @@
 
                     </FlexBox>
 
-                    <!-- SOD FILTER BAR (Go -> onSodSearch -> backend call; All = "*") -->
+                    <!-- SOD FILTER BAR (Go -> onSodSearch -> backend calls; All = "*") -->
                     <fb:FilterBar id="sodFilterBar" useToolbar="false" showGoOnFB="true"
                                   showFilterConfiguration="false" showClearOnFB="false"
                                   search="onSodSearch">
@@ -565,7 +991,6 @@
                                 <fb:control>
                                     <Select id="sodSelCompany" selectedKey="*">
                                         <core:Item id="sodCompanyAll" key="*" text="All"/>
-                                        <core:Item id="sodCompany1000" key="1000" text="1000"/>
                                     </Select>
                                 </fb:control>
                             </fb:FilterGroupItem>
@@ -575,7 +1000,6 @@
                                 <fb:control>
                                     <Select id="sodSelUserType" selectedKey="*">
                                         <core:Item id="sodUserTypeAll" key="*" text="All"/>
-                                      
                                     </Select>
                                 </fb:control>
                             </fb:FilterGroupItem>
@@ -618,50 +1042,52 @@
                         </fb:filterGroupItems>
                     </fb:FilterBar>
 
-                    <!-- SOD KPI TILES (Total / Active / Dormant from backend UserDataSet) -->
+                    <!-- SOD KPI TILES (8 tiles) -->
                     <FlexBox id="sodKpiTiles" width="100%" direction="Row" wrap="Wrap"
-         justifyContent="Start" alignItems="Stretch" class="kpiTiles sodKpiRow">
+                             justifyContent="Start" alignItems="Stretch" class="kpiTiles sodKpiRow">
 
                         <GenericTile id="sodTileTotal" header="Total Users" class="kpiTile">
-    <TileContent id="sodTcTotal">
-        <NumericContent id="sodNcTotal" class="sodBlueIcon"
-            value="{sodTilesModel>/totalUsers}"
-            icon="sap-icon://group" valueColor="Neutral" withMargin="false"/>
-    </TileContent>
-</GenericTile>
+                            <TileContent id="sodTcTotal">
+                                <NumericContent id="sodNcTotal" class="sodBlueIcon"
+                                    value="{sodTilesModel>/totalUsers}"
+                                    icon="sap-icon://group" valueColor="Neutral" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
 
                         <GenericTile id="sodTileActive" header="Active Users" class="kpiTile">
-    <TileContent id="sodTcActive">
-        <NumericContent id="sodNcActive"
-            value="{sodTilesModel>/activeUsers}"
-            scale="{sodTilesModel>/activePct}"
-            icon="sap-icon://employee-approvals" valueColor="Good" withMargin="false"/>
-    </TileContent>
-</GenericTile>
-<GenericTile id="sodTileDormant" header="Dormant Users" class="kpiTile">
-    <TileContent id="sodTcDormant">
-        <NumericContent id="sodNcDormant"
-            value="{sodTilesModel>/dormantUsers}"
-            scale="{sodTilesModel>/dormantPct}"
-            icon="sap-icon://employee" valueColor="Neutral" withMargin="false"/>
-    </TileContent>
-</GenericTile>
+                            <TileContent id="sodTcActive">
+                                <NumericContent id="sodNcActive"
+                                    value="{sodTilesModel>/activeUsers}"
+                                    scale="{sodTilesModel>/activePct}"
+                                    icon="sap-icon://employee-approvals" valueColor="Good" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
+
+                        <GenericTile id="sodTileDormant" header="Dormant Users" class="kpiTile">
+                            <TileContent id="sodTcDormant">
+                                <NumericContent id="sodNcDormant"
+                                    value="{sodTilesModel>/dormantUsers}"
+                                    scale="{sodTilesModel>/dormantPct}"
+                                    icon="sap-icon://employee" valueColor="Neutral" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
 
                         <GenericTile id="sodTileTerminated" header="Terminated (Not Disabled)" class="kpiTile">
-                            <TileContent id="sodTcTerminated" >
+                            <TileContent id="sodTcTerminated">
                                 <NumericContent id="sodNcTerminated"
                                     value="{sodTilesModel>/terminatedUsers}"
-                                    scale ="{sodTilesModel>/terminatedPct}"
+                                    scale="{sodTilesModel>/terminatedPct}"
                                     icon="sap-icon://employee-rejections" valueColor="Error" withMargin="false"/>
                             </TileContent>
                         </GenericTile>
+
                         <GenericTile id="sodTileRoles" header="Roles" class="kpiTile">
-    <TileContent id="sodTcRoles">
-        <NumericContent id="sodNcRoles"
-            value="{sodTilesModel>/roles}"
-            icon="sap-icon://layer" valueColor="Neutral" withMargin="false"/>
-    </TileContent>
-</GenericTile>
+                            <TileContent id="sodTcRoles">
+                                <NumericContent id="sodNcRoles"
+                                    value="{sodTilesModel>/roles}"
+                                    icon="sap-icon://layer" valueColor="Neutral" withMargin="false"/>
+                            </TileContent>
+                        </GenericTile>
 
                         <GenericTile id="sodTileConflicts" header="SoD Conflicts" class="kpiTile">
                             <TileContent id="sodTcConflicts">
@@ -686,6 +1112,113 @@
                                     icon="sap-icon://accept" valueColor="Neutral" withMargin="false"/>
                             </TileContent>
                         </GenericTile>
+
+                    </FlexBox>
+
+                    <!-- SOD ROW 2 : HIGH-RISK USER ACCESS (TOP 5) | USER PROVISIONING & REVIEW -->
+                    <FlexBox id="sodRow2" alignItems="Start" class="sapUiSmallMarginTop">
+
+                        <Panel id="sodHighRiskPanel"
+                               headerText="High-Risk User Access (Top 5)"
+                               width="100%">
+                            <layoutData>
+                                <FlexItemData id="sodHrFlexData" growFactor="3" baseSize="0" minWidth="360px"/>
+                            </layoutData>
+
+                            <Table id="sodHighRiskTable" width="100%"
+                                   items="{sodHighRiskModel>/items}"
+                                   class="sapUiSizeCompact"
+                                   noDataText="No data. Press Go.">
+                                <columns>
+                                    <Column id="hrColNo"     width="5%"><Text id="hrHNo"     text="#"/></Column>
+                                    <Column id="hrColUser"   width="14%"><Text id="hrHUser"   text="User ID"/></Column>
+                                    <Column id="hrColName"   width="16%"><Text id="hrHName"   text="User Name"/></Column>
+                                    <Column id="hrColAccess" width="40%"><Text id="hrHAccess" text="Critical Access"/></Column>
+                                    <Column id="hrColSys"    width="10%"><Text id="hrHSys"    text="System"/></Column>
+                                    <Column id="hrColRisk"   width="15%" hAlign="Center"><Text id="hrHRisk" text="Risk"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="hrItem">
+                                        <cells>
+                                            <Text id="hrCNo"     text="{sodHighRiskModel>no}"/>
+                                            <Text id="hrCUser"   text="{sodHighRiskModel>userId}"/>
+                                            <Text id="hrCName"   text="{sodHighRiskModel>name}"/>
+                                            <Text id="hrCAccess" text="{sodHighRiskModel>access}"/>
+                                            <Text id="hrCSys"    text="{sodHighRiskModel>system}"/>
+                                            <ObjectStatus id="hrCRisk" text="{sodHighRiskModel>risk}"
+                                                          state="{sodHighRiskModel>state}" inverted="true"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+
+                        </Panel>
+
+                        <Panel id="sodProvPanel"
+                               headerText="User Provisioning &amp; Review"
+                               width="100%">
+                            <layoutData>
+                                <FlexItemData id="sodProvFlexData" growFactor="2" baseSize="0" minWidth="360px"
+                                              styleClass="sapUiSmallMarginBegin"/>
+                            </layoutData>
+
+                            <List id="sodProvList" showSeparators="Inner">
+
+                                <CustomListItem id="sodProvItemNew">
+                                    <HBox id="sodProvBoxNew" justifyContent="SpaceBetween" alignItems="Center"
+                                          class="sapUiSmallMarginBeginEnd sapUiTinyMarginTopBottom">
+                                        <HBox id="sodProvLeftNew" alignItems="Center">
+                                            <core:Icon id="sodProvIconNew" src="sap-icon://add-employee"
+                                                       class="sapUiSmallMarginEnd"/>
+                                            <Text id="sodProvTextNew" text="New User Requests (Last 30 Days)"/>
+                                        </HBox>
+                                        <ObjectNumber id="sodProvNumNew" number="{sodProvModel>/newUsers}"
+                                                      emphasized="true"/>
+                                    </HBox>
+                                </CustomListItem>
+
+                                <CustomListItem id="sodProvItemRole">
+                                    <HBox id="sodProvBoxRole" justifyContent="SpaceBetween" alignItems="Center"
+                                          class="sapUiSmallMarginBeginEnd sapUiTinyMarginTopBottom">
+                                        <HBox id="sodProvLeftRole" alignItems="Center">
+                                            <core:Icon id="sodProvIconRole" src="sap-icon://role"
+                                                       class="sapUiSmallMarginEnd"/>
+                                            <Text id="sodProvTextRole" text="Role Changes"/>
+                                        </HBox>
+                                        <ObjectNumber id="sodProvNumRole" number="{sodProvModel>/roleChanges}"
+                                                      emphasized="true"/>
+                                    </HBox>
+                                </CustomListItem>
+
+                                <CustomListItem id="sodProvItemDue">
+                                    <HBox id="sodProvBoxDue" justifyContent="SpaceBetween" alignItems="Center"
+                                          class="sapUiSmallMarginBeginEnd sapUiTinyMarginTopBottom">
+                                        <HBox id="sodProvLeftDue" alignItems="Center">
+                                            <core:Icon id="sodProvIconDue" src="sap-icon://pending"
+                                                       class="sapUiSmallMarginEnd"/>
+                                            <Text id="sodProvTextDue" text="Access Recertifications (Due)"/>
+                                        </HBox>
+                                        <ObjectNumber id="sodProvNumDue" number="{sodProvModel>/recertDue}"
+                                                      emphasized="true" state="Error"/>
+                                    </HBox>
+                                </CustomListItem>
+
+                                <CustomListItem id="sodProvItemDone">
+                                    <HBox id="sodProvBoxDone" justifyContent="SpaceBetween" alignItems="Center"
+                                          class="sapUiSmallMarginBeginEnd sapUiTinyMarginTopBottom">
+                                        <HBox id="sodProvLeftDone" alignItems="Center">
+                                            <core:Icon id="sodProvIconDone" src="sap-icon://complete"
+                                                       class="sapUiSmallMarginEnd"/>
+                                            <Text id="sodProvTextDone" text="Access Recertifications (Completed)"/>
+                                        </HBox>
+                                        <ObjectNumber id="sodProvNumDone" number="{sodProvModel>/recertCompleted}"
+                                                      emphasized="true" state="Success"/>
+                                    </HBox>
+                                </CustomListItem>
+
+                            </List>
+
+                        </Panel>
 
                     </FlexBox>
 
