@@ -182,28 +182,28 @@
                                    items="{scorecardModel>/items}"
                                    class="sapUiSizeCompact">
                                 <columns>
-                                    <Column id="colNo"     width="4%"><Text id="hNo"     text="#"/></Column>
+                                    <Column id="colNo" width="4%"><Text id="hNo" text="#"/></Column>
                                     <Column id="colDomain" width="24%"><Text id="hDomain" text="Control Domain"/></Column>
-                                    <Column id="colApp"    width="9%"  hAlign="Center"><Text id="hApp"  text="Applicable"/></Column>
-                                    <Column id="colPass"   width="8%"  hAlign="Center"><Text id="hPass" text="Passed"/></Column>
-                                    <Column id="colFail"   width="7%"  hAlign="Center"><Text id="hFail" text="Failed"/></Column>
-                                    <Column id="colNT"     width="9%"  hAlign="Center"><Text id="hNT"   text="Not Tested"/></Column>
-                                    <Column id="colUn"     width="10%" hAlign="Center"><Text id="hUn"   text="Unavailable"/></Column>
-                                    <Column id="colComp"   width="10%" hAlign="Center"><Text id="hComp" text="Compliance"/></Column>
-                                    <Column id="colTarget" width="8%"  hAlign="Center"><Text id="hTarget" text="Target"/></Column>
+                                    <Column id="colApp" width="9%" hAlign="Center"><Text id="hApp" text="Applicable"/></Column>
+                                    <Column id="colPass" width="8%" hAlign="Center"><Text id="hPass" text="Passed"/></Column>
+                                    <Column id="colFail" width="7%" hAlign="Center"><Text id="hFail" text="Failed"/></Column>
+                                    <Column id="colNT" width="9%" hAlign="Center"><Text id="hNT" text="Not Tested"/></Column>
+                                    <Column id="colUn" width="10%" hAlign="Center"><Text id="hUn" text="Unavailable"/></Column>
+                                    <Column id="colComp" width="10%" hAlign="Center"><Text id="hComp" text="Compliance"/></Column>
+                                    <Column id="colTarget" width="8%" hAlign="Center"><Text id="hTarget" text="Target"/></Column>
                                     <Column id="colStatus" width="11%"><Text id="hStatus" text="Status"/></Column>
                                 </columns>
                                 <items>
                                     <ColumnListItem id="scorecardItem">
                                         <cells>
-                                            <Text id="cNo"     text="{scorecardModel>no}"/>
+                                            <Text id="cNo" text="{scorecardModel>no}"/>
                                             <Text id="cDomain" text="{scorecardModel>domain}"/>
-                                            <Text id="cApp"    text="{scorecardModel>applicable}"/>
-                                            <Text id="cPass"   text="{scorecardModel>passed}"/>
-                                            <Text id="cFail"   text="{scorecardModel>failed}"/>
-                                            <Text id="cNT"     text="{scorecardModel>notTested}"/>
-                                            <Text id="cUn"     text="{scorecardModel>unavailable}"/>
-                                            <Text id="cComp"   text="{scorecardModel>compliance}"/>
+                                            <Text id="cApp" text="{scorecardModel>applicable}"/>
+                                            <Text id="cPass" text="{scorecardModel>passed}"/>
+                                            <Text id="cFail" text="{scorecardModel>failed}"/>
+                                            <Text id="cNT" text="{scorecardModel>notTested}"/>
+                                            <Text id="cUn" text="{scorecardModel>unavailable}"/>
+                                            <Text id="cComp" text="{scorecardModel>compliance}"/>
                                             <Text id="cTarget" text="{scorecardModel>target}"/>
                                             <ObjectStatus id="cStatus"
                                                 text="{scorecardModel>status}"
@@ -217,7 +217,6 @@
                         <VBox id="rightColumn" renderType="Bare" class="cmRight">
 
                             <VBox id="moduleComplianceContainer" renderType="Bare" class="cmCard">
-
                                 <Title id="moduleComplianceTitle" text="Module Compliance"
                                        level="H4" class="cmCardTitle"/>
 
@@ -226,7 +225,7 @@
                                        class="sapUiSizeCompact">
                                     <columns>
                                         <Column id="mColModule" width="30%"><Text id="mHModule" text="Module"/></Column>
-                                        <Column id="mColComp"   width="25%" hAlign="Center"><Text id="mHComp" text="Compliance"/></Column>
+                                        <Column id="mColComp" width="25%" hAlign="Center"><Text id="mHComp" text="Compliance"/></Column>
                                         <Column id="mColTarget" width="20%" hAlign="Center"><Text id="mHTarget" text="Target"/></Column>
                                         <Column id="mColStatus" width="25%" hAlign="Center"><Text id="mHStatus" text="Status"/></Column>
                                     </columns>
@@ -246,7 +245,6 @@
                             </VBox>
 
                             <VBox id="monitoringHealthContainer" renderType="Bare" class="cmCard">
-
                                 <Title id="healthTitle" text="Monitoring &amp; Data Health"
                                        level="H4" class="cmCardTitle"/>
 
@@ -255,11 +253,11 @@
                                        class="sapUiSizeCompact"
                                        noDataText="No monitoring data available">
                                     <columns>
-                                        <Column id="hColComp"   width="24%"><Text id="hHComp"   text="Component"/></Column>
+                                        <Column id="hColComp" width="24%"><Text id="hHComp" text="Component"/></Column>
                                         <Column id="hColStatus" width="14%" hAlign="Center"><Text id="hHStatus" text="Status"/></Column>
-                                        <Column id="hColAff"    width="15%" hAlign="Center"><Text id="hHAff"    text="Affected Controls"/></Column>
-                                        <Column id="hColLast"   width="17%" hAlign="Center"><Text id="hHLast"   text="Last Run"/></Column>
-                                        <Column id="hColReco"   width="30%"><Text id="hHReco"   text="Recommendation"/></Column>
+                                        <Column id="hColAff" width="15%" hAlign="Center"><Text id="hHAff" text="Affected Controls"/></Column>
+                                        <Column id="hColLast" width="17%" hAlign="Center"><Text id="hHLast" text="Last Run"/></Column>
+                                        <Column id="hColReco" width="30%"><Text id="hHReco" text="Recommendation"/></Column>
                                     </columns>
                                     <items>
                                         <ColumnListItem id="healthItem">
@@ -267,7 +265,7 @@
                                                 <Text id="hCComp" text="{healthModel>component}"/>
                                                 <ObjectStatus id="hCStatus" text="{healthModel>status}"
                                                     state="{healthModel>state}"/>
-                                                <Text id="hCAff"  text="{healthModel>affectedControls}"/>
+                                                <Text id="hCAff" text="{healthModel>affectedControls}"/>
                                                 <Text id="hCLast" text="{healthModel>lastRun}"/>
                                                 <Text id="hCReco" text="{healthModel>recommendation}"/>
                                             </cells>
@@ -277,14 +275,12 @@
                             </VBox>
 
                         </VBox>
-
                     </FlexBox>
 
                     <!-- ROW 2 : TREND | ASSURANCE CONFIDENCE -->
                     <FlexBox id="chartsRow" renderType="Bare" class="cmRow cmRowCharts">
 
                         <VBox id="trendContainer" renderType="Bare" class="cmCard cmLeft">
-
                             <Title id="trendTitle"
                                    text="Control Effectiveness Trend (Actual vs Target)"
                                    level="H4" class="cmCardTitle"/>
@@ -318,7 +314,6 @@
                         </VBox>
 
                         <VBox id="assuranceContainer" renderType="Bare" class="cmCard cmRight">
-
                             <Title id="assuranceTitle"
                                    text="Assurance Confidence Overview"
                                    level="H4" class="cmCardTitle"/>
@@ -348,15 +343,12 @@
                                 </viz:VizFrame>
                             </VBox>
                         </VBox>
-
                     </FlexBox>
 
                     <!-- ROW 3 : TOP CONTROL EXCEPTIONS | AI RECOMMENDATIONS -->
                     <FlexBox id="bottomRow" renderType="Bare" class="cmRow cmRowLast">
 
-                        <!-- TOP CONTROL EXCEPTIONS -->
                         <VBox id="exceptionsContainer" renderType="Bare" class="cmCard cmLeft">
-
                             <Title id="exceptionsTitle"
                                    text="Top Control Exceptions (Next 7 Days)"
                                    level="H4" class="cmCardTitle"/>
@@ -365,23 +357,23 @@
                                    items="{excModel>/items}"
                                    class="sapUiSizeCompact">
                                 <columns>
-                                    <Column id="eColNo"    width="5%"><Text id="eHNo"    text="#"/></Column>
-                                    <Column id="eColId"    width="13%"><Text id="eHId"    text="Control ID"/></Column>
-                                    <Column id="eColCtrl"  width="31%"><Text id="eHCtrl"  text="Control"/></Column>
-                                    <Column id="eColMod"   width="11%"><Text id="eHMod"   text="Module"/></Column>
-                                    <Column id="eColOwn"   width="15%"><Text id="eHOwn"   text="Owner"/></Column>
-                                    <Column id="eColDue"   width="14%"><Text id="eHDue"   text="Due Date"/></Column>
-                                    <Column id="eColPri"   width="11%"><Text id="eHPri"   text="Priority"/></Column>
+                                    <Column id="eColNo" width="5%"><Text id="eHNo" text="#"/></Column>
+                                    <Column id="eColId" width="13%"><Text id="eHId" text="Control ID"/></Column>
+                                    <Column id="eColCtrl" width="31%"><Text id="eHCtrl" text="Control"/></Column>
+                                    <Column id="eColMod" width="11%"><Text id="eHMod" text="Module"/></Column>
+                                    <Column id="eColOwn" width="15%"><Text id="eHOwn" text="Owner"/></Column>
+                                    <Column id="eColDue" width="14%"><Text id="eHDue" text="Due Date"/></Column>
+                                    <Column id="eColPri" width="11%"><Text id="eHPri" text="Priority"/></Column>
                                 </columns>
                                 <items>
                                     <ColumnListItem id="exceptionItem">
                                         <cells>
-                                            <Text id="eCNo"   text="{excModel>no}"/>
-                                            <Link id="eCId"   text="{excModel>id}"/>
+                                            <Text id="eCNo" text="{excModel>no}"/>
+                                            <Link id="eCId" text="{excModel>id}"/>
                                             <Text id="eCCtrl" text="{excModel>control}"/>
-                                            <Text id="eCMod"  text="{excModel>module}"/>
-                                            <Text id="eCOwn"  text="{excModel>owner}"/>
-                                            <Text id="eCDue"  text="{excModel>due}"/>
+                                            <Text id="eCMod" text="{excModel>module}"/>
+                                            <Text id="eCOwn" text="{excModel>owner}"/>
+                                            <Text id="eCDue" text="{excModel>due}"/>
                                             <ObjectStatus id="eCPri" text="{excModel>priority}"
                                                 state="{excModel>state}"/>
                                         </cells>
@@ -394,9 +386,7 @@
                             </HBox>
                         </VBox>
 
-                        <!-- AI RECOMMENDATIONS -->
                         <VBox id="aiContainer" renderType="Bare" class="cmCard cmCardAi cmRight">
-
                             <HBox id="aiTitleBox" alignItems="Center" class="cmCardTitle">
                                 <core:Icon id="aiTitleIcon"
                                            src="sap-icon://lightbulb"
@@ -412,16 +402,16 @@
                                    items="{aiModel>/items}"
                                    class="sapUiSizeCompact">
                                 <columns>
-                                    <Column id="aColNo"   width="5%"><Text id="aHNo"   text="#"/></Column>
-                                    <Column id="aColRec"  width="45%"><Text id="aHRec"  text="Recommendation"/></Column>
-                                    <Column id="aColOwn"  width="17%"><Text id="aHOwn"  text="Owner"/></Column>
-                                    <Column id="aColDue"  width="17%"><Text id="aHDue"  text="Due Date"/></Column>
-                                    <Column id="aColImp"  width="16%"><Text id="aHImp"  text="Impact"/></Column>
+                                    <Column id="aColNo" width="5%"><Text id="aHNo" text="#"/></Column>
+                                    <Column id="aColRec" width="45%"><Text id="aHRec" text="Recommendation"/></Column>
+                                    <Column id="aColOwn" width="17%"><Text id="aHOwn" text="Owner"/></Column>
+                                    <Column id="aColDue" width="17%"><Text id="aHDue" text="Due Date"/></Column>
+                                    <Column id="aColImp" width="16%"><Text id="aHImp" text="Impact"/></Column>
                                 </columns>
                                 <items>
                                     <ColumnListItem id="aiItem">
                                         <cells>
-                                            <Text id="aCNo"  text="{aiModel>no}"/>
+                                            <Text id="aCNo" text="{aiModel>no}"/>
                                             <Text id="aCRec" text="{aiModel>text}"/>
                                             <Text id="aCOwn" text="{aiModel>owner}"/>
                                             <Text id="aCDue" text="{aiModel>due}"/>
@@ -432,7 +422,6 @@
                                 </items>
                             </Table>
                         </VBox>
-
                     </FlexBox>
 
                 </VBox>
@@ -441,7 +430,6 @@
                 <VBox id="riskAssessmentContent" visible="false" width="auto"
                       class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
 
-                    <!-- HEADING -->
                     <FlexBox id="riskAssessmentHeader" justifyContent="SpaceBetween"
                              alignItems="Center" width="100%" wrap="Wrap"
                              class="sapUiSmallMarginBottom">
@@ -459,10 +447,9 @@
                             <ObjectStatus id="riskLastRefresh"
                                           text="Last Refresh: 15 Nov 2026, 10:24 AM" state="Success"/>
                         </HBox>
-
                     </FlexBox>
 
-                    <!-- FILTER BAR -->
+                    <!-- RISK FILTER BAR -->
                     <fb:FilterBar id="riskFilterBar" useToolbar="false" showGoOnFB="true"
                                   showFilterConfiguration="false" showClearOnFB="false"
                                   search="onFilterSearch">
@@ -525,7 +512,7 @@
                         </fb:filterGroupItems>
                     </fb:FilterBar>
 
-                    <!-- RISK KPI TILES (hard coded values) -->
+                    <!-- RISK KPI TILES -->
                     <FlexBox id="riskKpiTiles" width="100%" direction="Row" wrap="Wrap"
                              justifyContent="Start" alignItems="Stretch" class="kpiTiles">
 
@@ -580,12 +567,10 @@
 
                     </FlexBox>
 
-                    <!-- RISK ROW 2 : RISK BY SAP MODULE | RISK TREND (LAST 6 MONTHS) -->
+                    <!-- RISK ROW 2 -->
                     <FlexBox id="riskChartsRow" renderType="Bare" class="cmRow cmRowCharts">
 
-                        <!-- RISK BY SAP MODULE (donut chart) -->
                         <VBox id="riskModuleContainer" renderType="Bare" class="cmCard cmLeft">
-
                             <Title id="riskModuleTitle" text="Risk by SAP Module"
                                    level="H4" class="cmCardTitle"/>
 
@@ -616,9 +601,7 @@
                             </VBox>
                         </VBox>
 
-                        <!-- RISK TREND - LAST 6 MONTHS (line chart) -->
                         <VBox id="riskTrendContainer" renderType="Bare" class="cmCard cmRight">
-
                             <Title id="riskTrendTitle" text="Risk Trend (Last 6 Months)"
                                    level="H4" class="cmCardTitle"/>
 
@@ -650,15 +633,12 @@
                                 </viz:VizFrame>
                             </VBox>
                         </VBox>
-
                     </FlexBox>
 
-                    <!-- RISK ROW 3 : RISK BY DOMAIN (TOP 5) | RISK TREATMENT STATUS -->
+                    <!-- RISK ROW 3 -->
                     <FlexBox id="riskChartsRow2" renderType="Bare" class="cmRow cmRowCharts">
 
-                        <!-- RISK BY DOMAIN - TOP 5 (horizontal bar chart) -->
                         <VBox id="riskDomainContainer" renderType="Bare" class="cmCard cmLeft">
-
                             <Title id="riskDomainTitle" text="Risk by Domain (Top 5)"
                                    level="H4" class="cmCardTitle"/>
 
@@ -689,9 +669,7 @@
                             </VBox>
                         </VBox>
 
-                        <!-- RISK TREATMENT STATUS (donut chart) -->
                         <VBox id="riskTreatContainer" renderType="Bare" class="cmCard cmRight">
-
                             <Title id="riskTreatTitle" text="Risk Treatment Status"
                                    level="H4" class="cmCardTitle"/>
 
@@ -721,15 +699,12 @@
                                 </viz:VizFrame>
                             </VBox>
                         </VBox>
-
                     </FlexBox>
 
-                    <!-- RISK ROW 4 : TOP 5 PRIORITY RISKS | AI RISK INTELLIGENCE -->
+                    <!-- RISK ROW 4 -->
                     <FlexBox id="riskRow4" renderType="Bare" class="cmRow">
 
-                        <!-- TOP 5 PRIORITY RISKS -->
                         <VBox id="riskTopContainer" renderType="Bare" class="cmCard cmLeft">
-
                             <Title id="riskTopTitle" text="Top 5 Priority Risks"
                                    level="H4" class="cmCardTitle"/>
 
@@ -737,32 +712,30 @@
                                    items="{riskTopModel>/items}"
                                    class="sapUiSizeCompact">
                                 <columns>
-                                    <Column id="rtColNo"     width="5%"><Text id="rtHNo"     text="#"/></Column>
-                                    <Column id="rtColRisk"   width="31%"><Text id="rtHRisk"   text="Risk"/></Column>
+                                    <Column id="rtColNo" width="5%"><Text id="rtHNo" text="#"/></Column>
+                                    <Column id="rtColRisk" width="31%"><Text id="rtHRisk" text="Risk"/></Column>
                                     <Column id="rtColDomain" width="12%"><Text id="rtHDomain" text="Domain"/></Column>
-                                    <Column id="rtColRes"    width="13%"><Text id="rtHRes"    text="Residual"/></Column>
-                                    <Column id="rtColOwner"  width="20%"><Text id="rtHOwner"  text="Owner"/></Column>
-                                    <Column id="rtColDue"    width="19%"><Text id="rtHDue"    text="Due Date"/></Column>
+                                    <Column id="rtColRes" width="13%"><Text id="rtHRes" text="Residual"/></Column>
+                                    <Column id="rtColOwner" width="20%"><Text id="rtHOwner" text="Owner"/></Column>
+                                    <Column id="rtColDue" width="19%"><Text id="rtHDue" text="Due Date"/></Column>
                                 </columns>
                                 <items>
                                     <ColumnListItem id="rtItem">
                                         <cells>
-                                            <Text id="rtCNo"     text="{riskTopModel>no}"/>
-                                            <Text id="rtCRisk"   text="{riskTopModel>risk}"/>
+                                            <Text id="rtCNo" text="{riskTopModel>no}"/>
+                                            <Text id="rtCRisk" text="{riskTopModel>risk}"/>
                                             <Text id="rtCDomain" text="{riskTopModel>domain}"/>
                                             <ObjectStatus id="rtCRes" text="{riskTopModel>residual}"
                                                           state="{riskTopModel>state}"/>
-                                            <Text id="rtCOwner"  text="{riskTopModel>owner}"/>
-                                            <Text id="rtCDue"    text="{riskTopModel>due}"/>
+                                            <Text id="rtCOwner" text="{riskTopModel>owner}"/>
+                                            <Text id="rtCDue" text="{riskTopModel>due}"/>
                                         </cells>
                                     </ColumnListItem>
                                 </items>
                             </Table>
                         </VBox>
 
-                        <!-- AI RISK INTELLIGENCE -->
                         <VBox id="riskAiContainer" renderType="Bare" class="cmCard cmRight">
-
                             <HBox id="riskAiTitleBox" alignItems="Center" class="cmCardTitle">
                                 <core:Icon id="riskAiTitleIcon"
                                            src="sap-icon://lightbulb"
@@ -773,67 +746,73 @@
                                        text="AI Risk Intelligence"
                                        level="H4"/>
                             </HBox>
-                           
-<List id="riskAiList" showSeparators="None"
-      class="sapUiSizeCompact">
 
-    <CustomListItem id="riskAiItem1">
-        <HBox id="_IDGenHBox1" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
-            <core:Icon id="_IDGenIcon" src="sap-icon://circle-task-2"
-                       size="0.75rem" color="Neutral"/>
-            <Text id="_IDGenText" text="6 risks (11%) are outside the defined risk appetite."
-                  wrapping="true" class="sapUiTinyMarginBegin"/>
-        </HBox>
-    </CustomListItem>
+                            <List id="riskAiList" showSeparators="None"
+                                  class="sapUiSizeCompact">
 
-    <CustomListItem id="riskAiItem2">
-        <HBox id="_IDGenHBox2" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
-            <core:Icon id="_IDGenIcon1" src="sap-icon://circle-task-2"
-                       size="0.75rem" color="Neutral"/>
-            <Text id="_IDGenText1" text="14 high risks should be treated within 30 days."
-                  wrapping="true" class="sapUiTinyMarginBegin"/>
-        </HBox>
-    </CustomListItem>
+                                <CustomListItem id="riskAiItem1">
+                                    <HBox id="_IDGenHBox1" alignItems="Center"
+                                          class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+                                        <core:Icon id="_IDGenIcon" src="sap-icon://circle-task-2"
+                                                   size="0.75rem" color="Neutral"/>
+                                        <Text id="_IDGenText"
+                                              text="6 risks (11%) are outside the defined risk appetite."
+                                              wrapping="true" class="sapUiTinyMarginBegin"/>
+                                    </HBox>
+                                </CustomListItem>
 
-    <CustomListItem id="riskAiItem3">
-        <HBox id="_IDGenHBox3" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
-            <core:Icon id="_IDGenIcon2" src="sap-icon://circle-task-2"
-                       size="0.75rem" color="Neutral"/>
-            <Text id="_IDGenText2" text="3 risk acceptances are due for renewal (≤ 30 days)."
-                  wrapping="true" class="sapUiTinyMarginBegin"/>
-        </HBox>
-    </CustomListItem>
+                                <CustomListItem id="riskAiItem2">
+                                    <HBox id="_IDGenHBox2" alignItems="Center"
+                                          class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+                                        <core:Icon id="_IDGenIcon1" src="sap-icon://circle-task-2"
+                                                   size="0.75rem" color="Neutral"/>
+                                        <Text id="_IDGenText1"
+                                              text="14 high risks should be treated within 30 days."
+                                              wrapping="true" class="sapUiTinyMarginBegin"/>
+                                    </HBox>
+                                </CustomListItem>
 
-    <CustomListItem id="riskAiItem4">
-        <HBox id="_IDGenHBox4" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
-            <core:Icon id="_IDGenIcon3" src="sap-icon://circle-task-2"
-                       size="0.75rem" color="Neutral"/>
-            <Text id="_IDGenText3" text="8 treatments are overdue; escalate to risk owners."
-                  wrapping="true" class="sapUiTinyMarginBegin"/>
-        </HBox>
-    </CustomListItem>
+                                <CustomListItem id="riskAiItem3">
+                                    <HBox id="_IDGenHBox3" alignItems="Center"
+                                          class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+                                        <core:Icon id="_IDGenIcon2" src="sap-icon://circle-task-2"
+                                                   size="0.75rem" color="Neutral"/>
+                                        <Text id="_IDGenText2"
+                                              text="3 risk acceptances are due for renewal (≤ 30 days)."
+                                              wrapping="true" class="sapUiTinyMarginBegin"/>
+                                    </HBox>
+                                </CustomListItem>
 
-    <CustomListItem id="riskAiItem5">
-        <HBox id="_IDGenHBox5" alignItems="Center" class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
-            <core:Icon id="_IDGenIcon4" src="sap-icon://circle-task-2"
-                       size="0.75rem" color="Neutral"/>
-            <Text id="_IDGenText4" text="Focus on privileged access, change control and SoD for maximum risk reduction."
-                  wrapping="true" class="sapUiTinyMarginBegin"/>
-        </HBox>
-    </CustomListItem>
+                                <CustomListItem id="riskAiItem4">
+                                    <HBox id="_IDGenHBox4" alignItems="Center"
+                                          class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+                                        <core:Icon id="_IDGenIcon3" src="sap-icon://circle-task-2"
+                                                   size="0.75rem" color="Neutral"/>
+                                        <Text id="_IDGenText3"
+                                              text="8 treatments are overdue; escalate to risk owners."
+                                              wrapping="true" class="sapUiTinyMarginBegin"/>
+                                    </HBox>
+                                </CustomListItem>
 
-</List>
+                                <CustomListItem id="riskAiItem5">
+                                    <HBox id="_IDGenHBox5" alignItems="Center"
+                                          class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd">
+                                        <core:Icon id="_IDGenIcon4" src="sap-icon://circle-task-2"
+                                                   size="0.75rem" color="Neutral"/>
+                                        <Text id="_IDGenText4"
+                                              text="Focus on privileged access, change control and SoD for maximum risk reduction."
+                                              wrapping="true" class="sapUiTinyMarginBegin"/>
+                                    </HBox>
+                                </CustomListItem>
 
-                       
+                            </List>
                         </VBox>
-
                     </FlexBox>
 
-                    <!-- RISK ROW 5 : RISK REGISTER (full width) -->
+                    <!-- RISK ROW 5 : RISK REGISTER -->
                     <FlexBox id="riskRow5" renderType="Bare" class="cmRow">
 
                         <VBox id="riskRegContainer" renderType="Bare" width="100%" class="cmCard">
-
                             <Title id="riskRegTitle" text="Risk Register (54 Risks)"
                                    level="H4" class="cmCardTitle"/>
 
@@ -842,34 +821,34 @@
                                    items="{riskRegModel>/items}"
                                    class="sapUiSizeCompact">
                                 <columns>
-                                    <Column id="rgColId"        width="7%"><Text id="rgHId"        text="Risk ID"/></Column>
-                                    <Column id="rgColTitle"     width="17%"><Text id="rgHTitle"     text="Risk Title"/></Column>
-                                    <Column id="rgColModule"    width="6%"><Text id="rgHModule"    text="Module"/></Column>
-                                    <Column id="rgColDomain"    width="7%"><Text id="rgHDomain"    text="Domain"/></Column>
-                                    <Column id="rgColInherent"  width="7%" hAlign="Center"><Text id="rgHInherent" text="Inherent"/></Column>
-                                    <Column id="rgColResidual"  width="7%" hAlign="Center"><Text id="rgHResidual" text="Residual"/></Column>
-                                    <Column id="rgColLevel"     width="8%"><Text id="rgHLevel"     text="Risk Level"/></Column>
-                                    <Column id="rgColTreat"     width="17%"><Text id="rgHTreat"     text="Treatment"/></Column>
-                                    <Column id="rgColStatus"    width="8%"><Text id="rgHStatus"    text="Status"/></Column>
-                                    <Column id="rgColOwner"     width="8%"><Text id="rgHOwner"     text="Owner"/></Column>
-                                    <Column id="rgColDue"       width="8%"><Text id="rgHDue"       text="Due Date"/></Column>
+                                    <Column id="rgColId" width="7%"><Text id="rgHId" text="Risk ID"/></Column>
+                                    <Column id="rgColTitle" width="17%"><Text id="rgHTitle" text="Risk Title"/></Column>
+                                    <Column id="rgColModule" width="6%"><Text id="rgHModule" text="Module"/></Column>
+                                    <Column id="rgColDomain" width="7%"><Text id="rgHDomain" text="Domain"/></Column>
+                                    <Column id="rgColInherent" width="7%" hAlign="Center"><Text id="rgHInherent" text="Inherent"/></Column>
+                                    <Column id="rgColResidual" width="7%" hAlign="Center"><Text id="rgHResidual" text="Residual"/></Column>
+                                    <Column id="rgColLevel" width="8%"><Text id="rgHLevel" text="Risk Level"/></Column>
+                                    <Column id="rgColTreat" width="17%"><Text id="rgHTreat" text="Treatment"/></Column>
+                                    <Column id="rgColStatus" width="8%"><Text id="rgHStatus" text="Status"/></Column>
+                                    <Column id="rgColOwner" width="8%"><Text id="rgHOwner" text="Owner"/></Column>
+                                    <Column id="rgColDue" width="8%"><Text id="rgHDue" text="Due Date"/></Column>
                                 </columns>
                                 <items>
                                     <ColumnListItem id="rgItem">
                                         <cells>
-                                            <Link id="rgCId"       text="{riskRegModel>id}"/>
-                                            <Text id="rgCTitle"    text="{riskRegModel>title}"/>
-                                            <Text id="rgCModule"   text="{riskRegModel>module}"/>
-                                            <Text id="rgCDomain"   text="{riskRegModel>domain}"/>
+                                            <Link id="rgCId" text="{riskRegModel>id}"/>
+                                            <Text id="rgCTitle" text="{riskRegModel>title}"/>
+                                            <Text id="rgCModule" text="{riskRegModel>module}"/>
+                                            <Text id="rgCDomain" text="{riskRegModel>domain}"/>
                                             <Text id="rgCInherent" text="{riskRegModel>inherent}"/>
                                             <Text id="rgCResidual" text="{riskRegModel>residual}"/>
                                             <ObjectStatus id="rgCLevel" text="{riskRegModel>level}"
                                                           state="{riskRegModel>levelState}"/>
-                                            <Text id="rgCTreat"    text="{riskRegModel>treatment}"/>
+                                            <Text id="rgCTreat" text="{riskRegModel>treatment}"/>
                                             <ObjectStatus id="rgCStatus" text="{riskRegModel>status}"
                                                           state="{riskRegModel>statusState}"/>
-                                            <Text id="rgCOwner"    text="{riskRegModel>owner}"/>
-                                            <Text id="rgCDue"      text="{riskRegModel>due}"/>
+                                            <Text id="rgCOwner" text="{riskRegModel>owner}"/>
+                                            <Text id="rgCDue" text="{riskRegModel>due}"/>
                                         </cells>
                                     </ColumnListItem>
                                 </items>
@@ -879,14 +858,12 @@
                                 <Link id="viewAllRisks" text="View All Risks (54) →"/>
                             </HBox>
                         </VBox>
-
                     </FlexBox>
 
-                    <!-- RISK ROW 6 : RISK LIFECYCLE (full width) -->
+                    <!-- RISK ROW 6 : RISK LIFECYCLE -->
                     <FlexBox id="riskRow6" renderType="Bare" class="cmRow cmRowLast">
 
                         <VBox id="riskLifecycleContainer" renderType="Bare" width="100%" class="cmCard">
-
                             <Title id="riskLifecycleTitle" text="Risk Lifecycle"
                                    level="H4" class="cmCardTitle"/>
 
@@ -934,19 +911,17 @@
                                                size="1.75rem" color="Positive"/>
                                     <Text id="rlTextClose" text="Close" class="sapUiTinyMarginTop"/>
                                 </VBox>
-
                             </HBox>
 
                             <MessageStrip id="riskGovernanceStrip"
                                           text="Governance: Risk Owner → GRC Approval → Independent Retest"
                                           type="Information" showIcon="false"/>
                         </VBox>
-
                     </FlexBox>
 
                 </VBox>
 
-                <!-- SOD : SAP SECURITY & SoD (heading -> filters -> tiles -> high-risk table + provisioning) -->
+                <!-- SAP SECURITY & SoD -->
                 <VBox id="sodContent" visible="false" width="auto"
                       class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
 
@@ -968,10 +943,9 @@
                             <ObjectStatus id="sodLastRefresh"
                                           text="Last Refresh: 15 Nov 2026, 10:24 AM" state="Success"/>
                         </HBox>
-
                     </FlexBox>
 
-                    <!-- SOD FILTER BAR (Go -> onSodSearch -> backend calls; All = "*") -->
+                    <!-- SOD FILTER BAR -->
                     <fb:FilterBar id="sodFilterBar" useToolbar="false" showGoOnFB="true"
                                   showFilterConfiguration="false" showClearOnFB="false"
                                   search="onSodSearch">
@@ -1042,7 +1016,7 @@
                         </fb:filterGroupItems>
                     </fb:FilterBar>
 
-                    <!-- SOD KPI TILES (8 tiles) -->
+                    <!-- SOD KPI TILES -->
                     <FlexBox id="sodKpiTiles" width="100%" direction="Row" wrap="Wrap"
                              justifyContent="Start" alignItems="Stretch" class="kpiTiles sodKpiRow">
 
@@ -1115,14 +1089,17 @@
 
                     </FlexBox>
 
-                    <!-- SOD ROW 2 : HIGH-RISK USER ACCESS (TOP 5) | USER PROVISIONING & REVIEW -->
+                    <!-- SOD ROW 2 : HIGH-RISK USER ACCESS | USER PROVISIONING -->
                     <FlexBox id="sodRow2" alignItems="Start" class="sapUiSmallMarginTop">
 
                         <Panel id="sodHighRiskPanel"
                                headerText="High-Risk User Access (Top 5)"
                                width="100%">
                             <layoutData>
-                                <FlexItemData id="sodHrFlexData" growFactor="3" baseSize="0" minWidth="360px"/>
+                                <FlexItemData id="sodHrFlexData"
+                                              growFactor="3"
+                                              baseSize="0"
+                                              minWidth="360px"/>
                             </layoutData>
 
                             <Table id="sodHighRiskTable" width="100%"
@@ -1130,36 +1107,38 @@
                                    class="sapUiSizeCompact"
                                    noDataText="No data. Press Go.">
                                 <columns>
-                                    <Column id="hrColNo"     width="5%"><Text id="hrHNo"     text="#"/></Column>
-                                    <Column id="hrColUser"   width="14%"><Text id="hrHUser"   text="User ID"/></Column>
-                                    <Column id="hrColName"   width="16%"><Text id="hrHName"   text="User Name"/></Column>
+                                    <Column id="hrColNo" width="5%"><Text id="hrHNo" text="#"/></Column>
+                                    <Column id="hrColUser" width="14%"><Text id="hrHUser" text="User ID"/></Column>
+                                    <Column id="hrColName" width="16%"><Text id="hrHName" text="User Name"/></Column>
                                     <Column id="hrColAccess" width="40%"><Text id="hrHAccess" text="Critical Access"/></Column>
-                                    <Column id="hrColSys"    width="10%"><Text id="hrHSys"    text="System"/></Column>
-                                    <Column id="hrColRisk"   width="15%" hAlign="Center"><Text id="hrHRisk" text="Risk"/></Column>
+                                    <Column id="hrColSys" width="10%"><Text id="hrHSys" text="System"/></Column>
+                                    <Column id="hrColRisk" width="15%" hAlign="Center"><Text id="hrHRisk" text="Risk"/></Column>
                                 </columns>
                                 <items>
                                     <ColumnListItem id="hrItem">
                                         <cells>
-                                            <Text id="hrCNo"     text="{sodHighRiskModel>no}"/>
-                                            <Text id="hrCUser"   text="{sodHighRiskModel>userId}"/>
-                                            <Text id="hrCName"   text="{sodHighRiskModel>name}"/>
+                                            <Text id="hrCNo" text="{sodHighRiskModel>no}"/>
+                                            <Text id="hrCUser" text="{sodHighRiskModel>userId}"/>
+                                            <Text id="hrCName" text="{sodHighRiskModel>name}"/>
                                             <Text id="hrCAccess" text="{sodHighRiskModel>access}"/>
-                                            <Text id="hrCSys"    text="{sodHighRiskModel>system}"/>
+                                            <Text id="hrCSys" text="{sodHighRiskModel>system}"/>
                                             <ObjectStatus id="hrCRisk" text="{sodHighRiskModel>risk}"
                                                           state="{sodHighRiskModel>state}" inverted="true"/>
                                         </cells>
                                     </ColumnListItem>
                                 </items>
                             </Table>
-
                         </Panel>
 
                         <Panel id="sodProvPanel"
                                headerText="User Provisioning &amp; Review"
-                               width="100%">
+                               width="100%"
+                               class="sapUiSmallMarginBegin">
                             <layoutData>
-                                <FlexItemData id="sodProvFlexData" growFactor="2" baseSize="0" minWidth="360px"
-                                              styleClass="sapUiSmallMarginBegin"/>
+                                <FlexItemData id="sodProvFlexData"
+                                              growFactor="2"
+                                              baseSize="0"
+                                              minWidth="360px"/>
                             </layoutData>
 
                             <List id="sodProvList" showSeparators="Inner">
@@ -1217,10 +1196,151 @@
                                 </CustomListItem>
 
                             </List>
-
                         </Panel>
 
                     </FlexBox>
+
+                    <!-- SOD ROW 3 : ACCESS & SoD EXCEPTIONS -->
+                    <FlexBox id="sodRow3" alignItems="Start" class="sapUiSmallMarginTop">
+
+                        <Panel id="sodExcPanel"
+                               headerText="Access &amp; SoD Exceptions (Open)"
+                               width="100%">
+                            <layoutData>
+                                <FlexItemData id="sodExcFlexData"
+                                              growFactor="1"
+                                              baseSize="0"
+                                              minWidth="360px"/>
+                            </layoutData>
+
+                            <Table id="sodExcTable" width="100%"
+                                   items="{sodExcModel>/items}"
+                                   class="sapUiSizeCompact"
+                                   noDataText="No data. Press Go.">
+                                <columns>
+                                    <Column id="exColNo" width="5%"><Text id="exHNo" text="#"/></Column>
+                                    <Column id="exColId" width="13%"><Text id="exHId" text="Exception ID"/></Column>
+                                    <Column id="exColType" width="9%"><Text id="exHType" text="Type"/></Column>
+                                    <Column id="exColDesc" width="36%"><Text id="exHDesc" text="Description"/></Column>
+                                    <Column id="exColOwner" width="14%"><Text id="exHOwner" text="Owner"/></Column>
+                                    <Column id="exColDue" width="12%"><Text id="exHDue" text="Due Date"/></Column>
+                                    <Column id="exColStat" width="11%" hAlign="Center"><Text id="exHStat" text="Status"/></Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem id="exItem">
+                                        <cells>
+                                            <Text id="exCNo" text="{sodExcModel>no}"/>
+                                            <!-- FIX: was {sodExcModel>ExecutionId} - that property does not exist in the JSON model; the row field is "id" -->
+                                            <Text id="exCId" text="{sodExcModel>id}"/>
+                                            <Text id="exCType" text="{sodExcModel>type}"/>
+                                            <Text id="exCDesc" text="{sodExcModel>description}"/>
+                                            <Text id="exCOwner" text="{sodExcModel>owner}"/>
+                                            <Text id="exCDue" text="{sodExcModel>due}"/>
+                                            <ObjectStatus id="exCStat"
+                                                          text="{sodExcModel>status}"
+                                                          state="{sodExcModel>state}"
+                                                          inverted="true"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+
+                            <HBox id="sodExcFooter" justifyContent="Center"
+                                  class="sapUiSmallMarginTop">
+                                <Link id="sodExcViewAll"
+                                      text="{= 'View All Exceptions (' + ${sodExcModel>/total} + ') →' }"/>
+                            </HBox>
+
+                        </Panel>
+                    </FlexBox>
+
+                </VBox>
+
+                <!-- AUDIT MANAGEMENT -->
+                <VBox id="auditContent" visible="false" width="auto"
+                      class="sapUiSizeCompact sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+
+                    <!-- AUDIT HEADING -->
+                    <FlexBox id="auditHeader" justifyContent="SpaceBetween"
+                             alignItems="Center" width="100%" wrap="Wrap"
+                             class="sapUiSmallMarginBottom">
+
+                        <VBox id="auditHeadingBox">
+                            <Title id="auditTitle" text="Audit Management" level="H3"
+                                   class="customHeading"/>
+                            <Text id="auditSubtitle"
+                                  text="ITGC audit planning, execution, findings, remediation and closure"/>
+                        </VBox>
+
+                        <HBox id="auditHeaderRight" alignItems="Center" wrap="Wrap">
+                            <ObjectStatus id="auditDemoStatus" text="ILLUSTRATIVE DEMO DATA"
+                                          state="Information" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus id="auditLastRefresh"
+                                          text="Last Refresh: 15 Nov 2026, 10:24 AM" state="Success"/>
+                        </HBox>
+                    </FlexBox>
+
+                    <!-- AUDIT FILTER BAR -->
+                    <fb:FilterBar id="auditFilterBar" useToolbar="false" showGoOnFB="true"
+                                  showFilterConfiguration="false" showClearOnFB="false"
+                                  search="onAuditSearch">
+                        <fb:filterGroupItems>
+
+                            <fb:FilterGroupItem id="auditFiSystem" groupName="G1" name="auditSystem"
+                                                label="System" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Select id="auditSelSystem" selectedKey="prd">
+                                        <core:Item id="auditSystemItem" key="prd" text="S/4HANA PRD"/>
+                                    </Select>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem id="auditFiType" groupName="G1" name="auditType"
+                                                label="Audit Type" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Select id="auditSelType" selectedKey="itgc">
+                                        <core:Item id="auditTypeItem" key="itgc" text="ITGC"/>
+                                    </Select>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem id="auditFiStatus" groupName="G1" name="auditStatus"
+                                                label="Audit Status" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Select id="auditSelStatus" selectedKey="all">
+                                        <core:Item id="auditStatusItem" key="all" text="All"/>
+                                    </Select>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem id="auditFiOwner" groupName="G1" name="auditOwner"
+                                                label="Audit Owner" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Select id="auditSelOwner" selectedKey="all">
+                                        <core:Item id="auditOwnerItem" key="all" text="All"/>
+                                    </Select>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem id="auditFiFramework" groupName="G1" name="auditFramework"
+                                                label="Framework" visibleInFilterBar="true">
+                                <fb:control>
+                                    <Select id="auditSelFramework" selectedKey="sox">
+                                        <core:Item id="auditFrameworkItem" key="sox" text="SOX / ICFR"/>
+                                    </Select>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem id="auditFiDate" groupName="G1" name="auditDate"
+                                                label="Date Range" visibleInFilterBar="true">
+                                <fb:control>
+                                    <DateRangeSelection id="auditDateRange"
+                                        displayFormat="dd.MM.yyyy" delimiter=" – "/>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
 
                 </VBox>
 
